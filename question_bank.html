@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="./assets/js/init-alpine.js"></script>
+    <link rel="stylesheet" href="path/to/your/styles.css">
+    <style>
+        .list-disc {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        aside ul li {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        aside ul li:hover {
+            background-color: #58627b;
+            /* Change the background color on hover */
+        }
+
+        aside ul li a:hover {
+            color: #ffffff;
+            /* Ensure the text color remains white on hover */
+        }
+
+        .active {
+            background-color: #58627b;
+        }
+
+
+        .bg-container {
+            background-image: url('./assets/img/Group%20571.png');
+            /* Ensure correct path */
+            background-size: cover;
+            /* Ensures the background image covers the entire container */
+            background-position: center;
+            /* Centers the image */
+            padding: 40px;
+            /* Add padding to space out the content */
+            width: 100%;
+            margin-top: 10px;
+            /* Makes the container full width of the viewport */
+            height: 400px;
+            /* Add a height to ensure visibility */
+            margin: 0;
+            /* Ensures there's no margin around the container */
+            position: relative;
+            /* Ensures positioning is relative */
+            z-index: 1;
+            /* Optional: keeps it above other elements */
+        }
+
+        /* Optional: Adjust the text color if needed for better visibility against the background */
+        .text-gray-700,
+        .text-gray-600 {
+            z-index: 2;
+            /* Keeps text above background */
+        }
+    </style>
+    <script>
+        function toggleSubMenu(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            const submenu = event.currentTarget.nextElementSibling;
+            submenu.classList.toggle('hidden'); // Toggle the 'hidden' class to show/hide the submenu
+        }
+
+        const currentLocation = window.location.pathname;
+        const menuItems = document.querySelectorAll('aside ul li a');
+
+        menuItems.forEach(item => {
+            if (item.href.includes(currentLocation)) {
+                item.parentElement.classList.add('active');
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
+        <!-- Desktop sidebar -->
+        <aside class="z-20 hidden w-64 overflow-y-auto bg-blue-600 md:block flex-shrink-0"
+            style="background-color:#394263; width: 258px;">
+            <div class="py-4 text-gray-500">
+                <a class="ml-6 text-lg font-bold text-white" style="margin-left:40px" href="index.html">
+                    Driving Exam
+                </a>
+                <!-- Main Menu of sidebar -->
+                <ul class="mt-6">
+                    <li class="relative px-6 py-3">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="index.html">
+                            <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                </path>
+                            </svg>
+                            <span class="ml-4">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="relative px-6 py-3">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="#" onclick="toggleSubMenu(event)">
+                            <div class="flex items-center">
+                                <!-- User Management SVG -->
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v2H4v-2z" />
+                                </svg>
+                                <span class="ml-4">User Management</span>
+                                <i class="fa-solid fa-caret-down text-lg" style="margin-left:35px"></i>
+                            </div>
+                        </a>
+
+                        <!-- Combined Submenu -->
+                        <ul class="submenu hidden mt-2">
+                            <li class="relative px-2 py-2" id="user-master">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="user_master.html">
+                                    <!-- User Master SVG (Different Icon) -->
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 11c1.656 0 3-1.344 3-3s-1.344-3-3-3-3 1.344-3 3 1.344 3 3 3zm0 2c-2.672 0-8 1.344-8 4v2h16v-2c0-2.656-5.328-4-8-4z" />
+                                    </svg>
+                                    User Master
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2" id="user-category">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="usercategory.html" onclick="setActive(event)">
+                                    <!-- User Category SVG (Different Icon) -->
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15l-1 1-1-1V9h2v8zM11 7V5h2v2h-2z" />
+                                    </svg>
+                                    User Category
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="relative px-6 py-3 active">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="#" onclick="toggleSubMenu(event)">
+                            <div class="flex items-center">
+                                <!-- SVG Icon -->
+                                <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7h20L12 2z" />
+                                    <path d="M2 7v10l10 5 10-5V7H2z" />
+                                </svg>
+                                <!-- Text and Caret -->
+                                <span class="ml-4 flex items-center whitespace-nowrap">Master Management
+                                    <i class="fa-solid fa-caret-down text-lg ml-2" style="margin-left:20px"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <!-- Road Sign Submenu -->
+                        <ul class="submenu hidden mt-2" id="road-sign-submenu">
+                            <li class="relative px-2 py-2 active">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="province-master.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M3 11l8-8m0 0l8 8M5.64 19.36A9 9 0 1120.36 5.64l-8 8-6.72 6.72z" />
+                                    </svg>
+                                    Province Master
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="examtype_master.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 2a10 10 0 00-10 10h2a8 8 0 1116 0h2a10 10 0 00-10-10zM12 16l-1 1-1-1v-6h2v6z" />
+                                    </svg>
+                                    Exam type master
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="question_category.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M3 7h18v14H3V7zm2-4h4l2 2h8v2H5V3z" />
+                                    </svg>
+                                    Question Category
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="question_bank.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 19V5a2 2 0 012-2h11a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2zm12-13H6v2h10V6z" />
+                                    </svg>
+                                    Question Bank
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="relative px-6 py-3">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="#" onclick="toggleSubMenu(event)">
+                            <div class="flex items-center">
+                                <!-- User Management SVG -->
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z" />
+                                    <path d="M16.5 9.4L12 12M12 12L7.5 9.4M12 12v7.5" />
+                                </svg>
+                                <span class="ml-4">Package Management</span>
+                                <i class="fa-solid fa-caret-down text-lg ml-2" style="margin-left: 10px;"></i>
+                            </div>
+                        </a>
+
+                        <!-- Combined Submenu -->
+                        <ul class="submenu hidden mt-2">
+                            <li class="relative px-2 py-2" id="user-master">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="package_master.html">
+                                    <!-- User Master SVG (Different Icon) -->
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M9 2h6a2 2 0 012 2v1h3a2 2 0 012 2v13a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2h3V4a2 2 0 012-2zM9 2v3h6V2" />
+                                        <path d="M9 11h6M9 15h6" />
+                                    </svg>
+                                    Package Master
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Mobile sidebar -->
+        <!-- Backdrop -->
+        <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"></div>
+        <aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+            x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+            x-transition:enter-start="opacity-0 transform -translate-x-20" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="isSideMenuOpen = false"
+            @keydown.escape="isSideMenuOpen = false" style="background-color:#394263; width:235px;">
+            <div class="py-4 text-gray-500 dark:text-gray-400">
+                <a class="ml-6 text-lg font-bold text-white" style="margin-left:40px" href="#">
+                    Driving Exam
+                </a>
+                <!-- Main Menu of sidebar -->
+                <ul class="mt-6">
+                    <li class="relative px-6 py-3 active">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="index.html">
+                            <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                </path>
+                            </svg>
+                            <span class="ml-4">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="relative px-6 py-3">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="profile.html">
+                            <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    d="M5.121 17.804A10 10 0 0112 2a10 10 0 016.879 15.804M8.235 18.236A10.002 10.002 0 0112 22a10.002 10.002 0 013.765-3.764M9 12a3 3 0 116 0 3 3 0 01-6 0z" />
+                            </svg>
+                            <span class="ml-4">User Profile</span>
+                        </a>
+                    </li>
+
+
+                    <li class="relative px-6 py-3">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="#" onclick="toggleSubMenu(event)">
+                            <div class="flex items-center">
+                                <!-- User Management SVG -->
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v2H4v-2z" />
+                                </svg>
+                                <span class="ml-4">User Management</span>
+                                <i class="fa-solid fa-caret-down text-lg" style="margin-left:35px"></i>
+                            </div>
+                        </a>
+
+                        <!-- Combined Submenu -->
+                        <ul class="submenu hidden mt-2">
+                            <li class="relative px-2 py-2" id="user-master">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="user_master.html">
+                                    <!-- User Master SVG (Different Icon) -->
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 11c1.656 0 3-1.344 3-3s-1.344-3-3-3-3 1.344-3 3 1.344 3 3 3zm0 2c-2.672 0-8 1.344-8 4v2h16v-2c0-2.656-5.328-4-8-4z" />
+                                    </svg>
+                                    User Master
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2" id="user-category">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="usercategory.html" onclick="setActive(event)">
+                                    <!-- User Category SVG (Different Icon) -->
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15l-1 1-1-1V9h2v8zM11 7V5h2v2h-2z" />
+                                    </svg>
+                                    User Category
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="relative px-6 py-3">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="#" onclick="toggleSubMenu(event)">
+                            <div class="flex items-center">
+                                <!-- SVG Icon -->
+                                <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7h20L12 2z" />
+                                    <path d="M2 7v10l10 5 10-5V7H2z" />
+                                </svg>
+                                <!-- Text and Caret -->
+                                <span class="ml-4 flex items-center whitespace-nowrap">Master Management
+                                    <i class="fa-solid fa-caret-down text-lg ml-2" style="margin-left:20px"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <!-- Road Sign Submenu -->
+                        <ul class="submenu hidden mt-2" id="road-sign-submenu">
+                            <li class="relative px-2 py-2 active">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="province-master.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M3 11l8-8m0 0l8 8M5.64 19.36A9 9 0 1120.36 5.64l-8 8-6.72 6.72z" />
+                                    </svg>
+                                    Province Master
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="examtype_master.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 2a10 10 0 00-10 10h2a8 8 0 1116 0h2a10 10 0 00-10-10zM12 16l-1 1-1-1v-6h2v6z" />
+                                    </svg>
+                                    Exam type master
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="question_category.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M3 7h18v14H3V7zm2-4h4l2 2h8v2H5V3z" />
+                                    </svg>
+                                    Question Category
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="question_bank.html">
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 19V5a2 2 0 012-2h11a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2zm12-13H6v2h10V6z" />
+                                    </svg>
+                                    Question Bank
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="relative px-6 py-3">
+                        <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+                            href="#" onclick="toggleSubMenu(event)">
+                            <div class="flex items-center">
+                                <!-- User Management SVG -->
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z" />
+                                    <path d="M16.5 9.4L12 12M12 12L7.5 9.4M12 12v7.5" />
+                                </svg>
+                                <span class="ml-4">Package Management</span>
+                                <i class="fa-solid fa-caret-down text-lg ml-2" style="margin-left: 10px;"></i>
+                            </div>
+                        </a>
+
+                        <!-- Combined Submenu -->
+                        <ul class="submenu hidden mt-2">
+                            <li class="relative px-2 py-2" id="user-master">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="#">
+                                    <!-- User Master SVG (Different Icon) -->
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M9 2h6a2 2 0 012 2v1h3a2 2 0 012 2v13a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2h3V4a2 2 0 012-2zM9 2v3h6V2" />
+                                        <path d="M9 11h6M9 15h6" />
+                                    </svg>
+                                    Package Master
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-2" id="user-category">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="#"
+                                    onclick="setActive(event)">
+                                    <!-- User Category SVG (Different Icon) -->
+                                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M10.94 2.07c.53-.18 1.1-.18 1.64 0l1.48.49a2 2 0 011.29 1.29l.49 1.48a2 2 0 00.5.78l1.17 1.17a2 2 0 00.78.5l1.48.49a2 2 0 011.29 1.29l.49 1.48c.18.53.18 1.1 0 1.64l-.49 1.48a2 2 0 01-1.29 1.29l-1.48.49a2 2 0 00-.78.5l-1.17 1.17a2 2 0 00-.5.78l-.49 1.48a2 2 0 01-1.29 1.29l-1.48.49c-.53.18-1.1.18-1.64 0l-1.48-.49a2 2 0 01-1.29-1.29l-.49-1.48a2 2 0 00-.5-.78l-1.17-1.17a2 2 0 00-.78-.5l-1.48-.49a2 2 0 01-1.29-1.29l-.49-1.48c-.18-.53-.18-1.1 0-1.64l.49-1.48a2 2 0 011.29-1.29l1.48-.49a2 2 0 00.78-.5l1.17-1.17a2 2 0 00.5-.78l.49-1.48a2 2 0 011.29-1.29l1.48-.49z" />
+                                        <path d="M12 9v6m-3-3h6" />
+                                    </svg>
+                                    Package Configuration
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </aside>
+
+        <!-- Header Section -->
+        <div class="flex flex-col flex-1 w-full">
+            <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800" style="background-color:#f9fafc">
+                <div
+                    class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-300">
+                    <!-- Left side toggle button -->
+                    <!-- Mobile hamburger -->
+                    <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+                        @click="toggleSideMenu" aria-label="Menu">
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Search input -->
+                    <div class="flex flex-1 lg:mr-32 justify-start">
+                        <div class="relative w-full max-w-xl mr-6 focus-within:text-blue-500">
+                            <div class="absolute inset-y-0 flex items-center pl-2">
+                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input
+                                class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-blue-300 focus:outline-none focus:shadow-outline-blue form-input"
+                                type="text" placeholder="Search for projects" aria-label="Search" />
+                        </div>
+                    </div>
+
+                    <ul class="flex items-center flex-shrink-0 space-x-6">
+                        <!-- Theme toggler -->
+                        <li class="flex">
+                            <button class="rounded-md focus:outline-none focus:shadow-outline-blue" @click="toggleTheme"
+                                aria-label="Toggle color mode">
+                                <template x-if="!dark">
+                                    <svg class="w-5 h-5 text-black" aria-hidden="true" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">
+                                        </path>
+                                    </svg>
+                                </template>
+                                <template x-if="dark">
+                                    <svg class="w-5 h-5 text-black" aria-hidden="true" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </template>
+                            </button>
+                        </li>
+                        <!-- Notifications menu -->
+                        <li class="relative">
+                            <button
+                                class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-blue"
+                                @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu"
+                                aria-label="Notifications" aria-haspopup="true">
+                                <svg class="w-5 h-5 text-black" aria-hidden="true" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
+                                    </path>
+                                </svg>
+                                <!-- Notification badge -->
+                                <span aria-hidden="true"
+                                    class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-blue-600 border-2 border-white rounded-full dark:border-gray-800"></span>
+                            </button>
+                            <template x-if="isNotificationsMenuOpen">
+                                <ul x-transition:leave="transition ease-in duration-150"
+                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                    @click.away="closeNotificationsMenu" @keydown.escape="closeNotificationsMenu"
+                                    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
+                                    aria-label="submenu">
+                                    <li class="flex">
+                                        <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                                            href="#">
+                                            <span>Messages</span>
+                                            <span
+                                                class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-blue-600 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-600">
+                                                13
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="flex">
+                                        <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                                            href="#">
+                                            <span>Sales</span>
+                                            <span
+                                                class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-blue-600 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-600">
+                                                2
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="flex">
+                                        <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                                            href="#">
+                                            <span>Alerts</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </template>
+                        </li>
+
+
+                        <!-- Profile menu -->
+                        <li class="relative">
+                            <button class="align-middle rounded-full focus:shadow-outline-blue focus:outline-none"
+                                @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
+                                aria-haspopup="true">
+                                <img class="object-cover w-8 h-8 rounded-full"
+                                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                    alt="" aria-hidden="true" />
+                            </button>
+                            <template x-if="isProfileMenuOpen">
+                                <ul x-transition:leave="transition ease-in duration-150" style="z-index: 1111 ;"
+                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                    @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu"
+                                    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
+                                    <li class="flex">
+                                        <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                                            href="profile.html">Profile</a>
+                                    </li>
+                                    <li class="flex">
+                                        <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                                            href="index.html">Settings</a>
+                                    </li>
+                                    <li class="flex">
+                                        <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                                            href="pages/login.html">Logout</a>
+                                    </li>
+                                </ul>
+                            </template>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <!-- Main Section -->
+            <main class="h-full overflow-y-auto">
+                <div class="container-fluid px-6 mx-auto grid my-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                            Question Bank
+                        </h2>
+                        <button class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                            data-bs-toggle="modal" data-bs-target="#userModal" onclick="openAddSignModal()">
+                            Add Question
+                        </button>
+                    </div>
+                    <!--Table -->
+                    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+                            <div class="w-full overflow-x-auto">
+                                <table class="w-full whitespace-no-wrap">
+                                    <thead>
+                                        <tr
+                                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                            <th class="px-4 py-3">Question</th>
+                                            <th class="px-4 py-3">Question Type</th>
+                                            <th class="px-4 py-3">Exam Type</th>
+                                            <th class="px-4 py-3">Option</th>
+                                            <th class="px-4 py-3">Correct Answer</th>
+                                            <th class="px-4 py-3">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                        <tr class="text-gray-700 dark:text-gray-400">
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">What does a red traffic light mean?</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">MultipleChoice</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">DrivingTest</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="A">
+                                                        A Stop
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="B">
+                                                        B Go
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="C">
+                                                        C Slow Down
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="D">
+                                                        D Yield
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Stop</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-blue-600 hover:text-blue-800"
+                                                        onclick="viewData('What does a red traffic light mean?')">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);"
+                                                        class="text-green-600 hover:text-green-800"
+                                                        onclick="editData('What does a red traffic light mean?')">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);"
+                                                        class="text-red-600 hover:text-red-800"
+                                                        onclick="deleteData('What does a red traffic light mean?')">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-gray-700 dark:text-gray-400">
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">What should you do when you see a yellow traffic light?</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">MultipleChoice</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">DrivingTest</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-2" value="A">
+                                                        A Speed Up
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-2" value="B">
+                                                        B Slow Down
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-2" value="C">
+                                                        C Ignore It
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-2" value="D">
+                                                        D Stop Immediately
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Slow Down</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+                                                    <a href="javascript:void(0);" class="text-blue-600 hover:text-blue-800" onclick="viewData('What should you do when you see a yellow traffic light?')">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);" class="text-green-600 hover:text-green-800" onclick="editData('What should you do when you see a yellow traffic light?')">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);" class="text-red-600 hover:text-red-800" onclick="deleteData('What should you do when you see a yellow traffic light?')">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-gray-700 dark:text-gray-400">
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">What does a green traffic light mean?</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">MultipleChoice</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">DrivingTest</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-3" value="A">
+                                                        A Stop
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-3" value="B">
+                                                        B Go
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-3" value="C">
+                                                        C Slow Down
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light-3" value="D">
+                                                        D Yield
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Go</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+                                                    <a href="javascript:void(0);" class="text-blue-600 hover:text-blue-800" onclick="viewData('What does a green traffic light mean?')">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);" class="text-green-600 hover:text-green-800" onclick="editData('What does a green traffic light mean?')">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);" class="text-red-600 hover:text-red-800" onclick="deleteData('What does a green traffic light mean?')">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-gray-700 dark:text-gray-400">
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">When parallel parking, you should turn your steering wheel?</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">MultipleChoice</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">DrivingTest</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="A">
+                                                        A Toward the curb
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="B">
+                                                        B Away from the curb
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="C">
+                                                        C Straight
+                                                    </label><br>
+                                                    <label>
+                                                        <input type="radio" name="traffic-light" value="D">
+                                                        D  Randomly
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Toward the curb</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex space-x-2">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-blue-600 hover:text-blue-800"
+                                                        onclick="viewData('What does a red traffic light mean?')">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);"
+                                                        class="text-green-600 hover:text-green-800"
+                                                        onclick="editData('What does a red traffic light mean?')">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>&nbsp;
+                                                    <a href="javascript:void(0);"
+                                                        class="text-red-600 hover:text-red-800"
+                                                        onclick="deleteData('What does a red traffic light mean?')">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <div id="addSignModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title"
+    role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4">
+        <div class="fixed inset-0 bg-black opacity-50"></div>
+        <div class="bg-white rounded-lg overflow-hidden shadow-xl z-10 max-w-xl w-full h-auto">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-4">Add Question</h3>
+                <form id="addSignForm" onsubmit="submitAddSign(event)">
+                    <!-- Question -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Question</label>
+                        <input type="text" id="question" class="border border-gray-300 rounded w-full p-2" required>
+                    </div>
+                    <!-- Question Type Dropdown -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Question Type</label>
+                        <select id="questionType" class="border border-gray-300 rounded w-full p-2">
+                            <option value="multipleChoice">Multiple Choice</option>
+                            <option value="trueFalse">True/False</option>
+                            <option value="shortAnswer">Short Answer</option>
+                        </select>
+                    </div>
+                    <!-- Exam Type Dropdown -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Exam Type</label>
+                        <select id="examType" class="border border-gray-300 rounded w-full p-2">
+                            <option value="theory">Theory</option>
+                            <option value="practical">Practical</option>
+                        </select>
+                    </div>
+                    <!-- Answer Options with Images -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Answer Options</label>
+                        <div class="flex flex-col mb-4">
+                            <div class="flex items-center mb-2">
+                                <input type="text" id="optionA" placeholder="Option A"
+                                    class="border border-gray-300 rounded w-full p-2" required>
+                                <input type="file" id="optionAImage" accept="image/*"
+                                    class="ml-2 border border-gray-300 rounded">
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <input type="text" id="optionB" placeholder="Option B"
+                                    class="border border-gray-300 rounded w-full p-2" required>
+                                <input type="file" id="optionBImage" accept="image/*"
+                                    class="ml-2 border border-gray-300 rounded">
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <input type="text" id="optionC" placeholder="Option C"
+                                    class="border border-gray-300 rounded w-full p-2">
+                                <input type="file" id="optionCImage" accept="image/*"
+                                    class="ml-2 border border-gray-300 rounded">
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <input type="text" id="optionD" placeholder="Option D"
+                                    class="border border-gray-300 rounded w-full p-2">
+                                <input type="file" id="optionDImage" accept="image/*"
+                                    class="ml-2 border border-gray-300 rounded">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Correct Answer -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Correct Answer</label>
+                        <select id="correctAnswer" class="border border-gray-300 rounded w-full p-2">
+                            <option value="A">Option A</option>
+                            <option value="B">Option B</option>
+                            <option value="C">Option C</option>
+                            <option value="D">Option D</option>
+                        </select>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="flex justify-end mt-6">
+                        <button type="submit"
+                            class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">Add</button>
+                        <button type="button" onclick="closeAddSignModal()"
+                            class="ml-2 px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+    <script>
+        function openAddSignModal() {
+            document.getElementById('addSignModal').classList.remove('hidden');
+        }
+
+        function closeAddSignModal() {
+            document.getElementById('addSignModal').classList.add('hidden');
+        }
+    </script>
+    <!-- Main Section -->
+    <!-- <main class="h-full pb-16 overflow-y-auto">
+                <div class="container-fluid px-6 mx-auto grid">
+
+                    <div class="bg-container">
+                        <h2 class="my-3 text-2xl font-semibold text-white dark:text-white">
+                            Add Questions <br>
+                        </h2>
+                        <h6 class="text-xl font-semibold text-white dark:text-white">
+                            Select Vehicle
+                        </h6>
+
+                         Car and Commercial Buttons -->
+    <!-- <div class="flex space-x-4 mt-4">
+                            <button id="carBtn" onclick="showCarStates()"
+                                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                                style="background-color:#1fa35a;">
+                                Car
+                            </button>
+                            <button id="commercialBtn" onclick="showCommercialStates()"
+                                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                                style="background-color:#1fa35a;">
+                                Commercial
+                            </button>
+                        </div> -->
+    <!-- Dropdown for States (hidden initially) -->
+    <!-- <div id="stateDropdown" class="hidden">
+                            <label class="block text-sm mb-4">
+                                <span class="text-black-700 text-black-700 dark:text-black-400">Select State</span>
+                                <select id="stateSelect" onchange="redirectToQuestionPage()"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
+                                    <option value="" disabled selected>Select state</option>
+                                     Options will be added dynamically -->
+    <!-- </select>
+                            </label>
+                        </div> 
+
+                        <div id="stateDropdown" class="hidden mb-4">
+                            <label class="block text-sm mb-4">
+                                <span class="text-gray-700 dark:text-gray-400">Select State</span>
+                                <select id="stateSelect" onchange="redirectToQuestionPage()"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
+                                    <option value="" disabled selected>Select State</option>
+                                    <option value="california">California</option>
+                                    <option value="texas">Texas</option>
+                                    <option value="new_york">New York</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <br><br> -->
+
+    <!-- Questions Table -->
+    <!-- <div id="questionsTable" class="mt-4">
+                        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 text-center">MCQ Questions
+                        </h3>
+                        <div class="flex justify-center space-x-4 mt-2">
+                            
+                            <label class="block mb-4">
+                                <span class="text-black text-lg mr-5">Filter</span>
+                                <select
+                                    class="inline-block w-auto mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
+                                    <option value="" disabled selected>Select Car</option>
+                                    <option value="car1">Car 1</option>
+                                    <option value="car2">Car 2</option>
+                                    <option value="car3">Car 3</option>
+                                </select>
+                            </label>
+
+                            
+                            <label class="block mb-4">
+                                <select
+                                    class="inline-block w-auto mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
+                                    <option value="" disabled selected>Select State</option>
+                                    <option value="state1">State 1</option>
+                                    <option value="state2">State 2</option>
+                                    <option value="state3">State 3</option>
+                                </select>
+                            </label>
+                        </div>
+                        <table class="min-w-full mt-2 bg-white border border-gray-200" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 border-b">Question</th>
+                                    <th class="py-2 px-4 border-b">Image</th> 
+                                    <th class="py-2 px-4 border-b">Options</th>
+                                    <th class="py-2 px-4 border-b">Correct Answer</th>
+                                    <th class="py-2 px-4 border-b">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="questionsBody">
+                               
+                                <tr>
+                                    <td class="py-2 px-4 border-b">What is the main function of an engine in a vehicle?
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <img src="./assets/img/pngwing.com (1).png" alt="Engine Image"
+                                            class="h-12 w-12">
+                                     
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <ul class="list-disc pl-6">
+                                            <li>A. To provide power to the wheels</li>
+                                            <li>B. To control the steering</li>
+                                            <li>C. To improve fuel efficiency</li>
+                                            <li>D. To maintain the vehicle's temperature</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="text-center font-semibold">A</div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-center space-x-4"> 
+                                            <button onclick="editQuestion(0)"
+                                                class="text-green-500 hover:text-green-600">
+                                                <i class="fas fa-edit fa-lg"></i> 
+                                            </button>
+                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
+                                                <i class="fas fa-trash fa-lg"
+                                                    style="color: rgb(209, 41, 41) !important;"></i>
+                                                
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">Which of the following is a common type of vehicle
+                                        transmission?</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <img src="./assets/img/pngwing.com (2).png" alt="Transmission Image"
+                                            class="h-12 w-12">
+                                        
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <ul class="list-disc pl-6">
+                                            <li>A. Automatic</li>
+                                            <li>B. Manual</li>
+                                            <li>C. Semi-automatic</li>
+                                            <li>D. All of the above</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="text-center font-semibold">D</div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-center space-x-4"> 
+                                            <button onclick="editQuestion(0)"
+                                                class="text-green-500 hover:text-green-600">
+                                                <i class="fas fa-edit fa-lg"></i> 
+                                            </button>
+                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
+                                                <i class="fas fa-trash fa-lg"
+                                                    style="color: rgb(209, 41, 41) !important;"></i>
+                                               
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">What is the purpose of brakes in a vehicle?</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <img src="" alt="NA" class="h-16 w-16">
+                                        
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <ul class="list-disc pl-6">
+                                            <li>A. To increase speed</li>
+                                            <li>B. To slow down or stop the vehicle</li>
+                                            <li>C. To change gears</li>
+                                            <li>D. To enhance fuel economy</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="text-center font-semibold">B</div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-center space-x-4"> 
+                                            <button onclick="editQuestion(0)"
+                                                class="text-green-500 hover:text-green-600">
+                                                <i class="fas fa-edit fa-lg"></i> 
+                                            </button>
+                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
+                                                <i class="fas fa-trash fa-lg"
+                                                    style="color: rgb(209, 41, 41) !important;"></i>
+                                                
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">Which type of fuel is commonly used in petrol
+                                        vehicles?</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <img src="" alt="NA" class="h-16 w-16"> 
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <ul class="list-disc pl-6">
+                                            <li>A. Diesel</li>
+                                            <li>B. Gasoline</li>
+                                            <li>C. Ethanol</li>
+                                            <li>D. CNG</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="text-center font-semibold">B</div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-center space-x-4"> 
+                                            <button onclick="editQuestion(0)"
+                                                class="text-green-500 hover:text-green-600">
+                                                <i class="fas fa-edit fa-lg"></i> 
+                                            </button>
+                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
+                                                <i class="fas fa-trash fa-lg"
+                                                    style="color: rgb(209, 41, 41) !important;"></i>
+                                                
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+
+    <!-- <script>
+        const carStates = [
+            'Ontario', 'Quebec', 'Nova Scotia', 'New Brunswick', 'Manitoba',
+            'British Columbia', 'Prince Edward Island', 'Saskatchewan', 'Alberta', 'Newfoundland and Labrador'
+        ];
+
+        const commercialStates = [
+            'Ontario', 'Quebec', 'Nova Scotia', 'New Brunswick', 'Manitoba',
+            'British Columbia', 'Prince Edward Island', 'Saskatchewan', 'Alberta', 'Newfoundland and Labrador'
+        ];
+
+        function showCarStates() {
+            populateStateDropdown(carStates);
+        }
+
+        function showCommercialStates() {
+            populateStateDropdown(commercialStates);
+        }
+
+        function populateStateDropdown(states) {
+            document.getElementById('stateDropdown').classList.remove('hidden');
+            const stateSelect = document.getElementById('stateSelect');
+            stateSelect.innerHTML = '<option value="" disabled selected>Select a state</option>';
+
+            states.forEach(state => {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                stateSelect.appendChild(option);
+            });
+        }
+
+        function redirectToQuestionPage() {
+            const selectedState = document.getElementById('stateSelect').value;
+            if (selectedState) {
+                // Redirect to the corresponding HTML file for the selected state
+                const stateFileMapping = {
+                    'Ontario': 'ontario.html',
+                    'Quebec': 'quebec.html',
+                    'Nova Scotia': 'nova-scotia.html',
+                    'New Brunswick': 'new-brunswick.html',
+                    'Manitoba': 'manitoba.html',
+                    'British Columbia': 'british-columbia.html',
+                    'Prince Edward Island': 'prince-edward-island.html',
+                    'Saskatchewan': 'saskatchewan.html',
+                    'Alberta': 'alberta.html',
+                    'Newfoundland and Labrador': 'newfoundland-and-labrador.html'
+                };
+
+                const redirectTo = stateFileMapping[selectedState];
+                if (redirectTo) {
+                    window.location.href = redirectTo;
+                }
+            }
+        }
+
+
+    </script> -->
+</body>
+
+</html>

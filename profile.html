@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="./assets/js/init-alpine.js"></script>
+  <script src="./assets/js/charts-lines.js" defer></script>
+  <script src="./assets/js/charts-pie.js" defer></script>
+  <style>
+    .active {
+      background-color: #58627b;
+      /* Active background color */
+
+    }
+
+    aside ul li {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+      border-radius: 8px;
+      /* Adjust margin and padding to control the width of the hover area */
+    }
+
+    aside ul li:hover {
+      background-color: #58627b;
+      /* Change the background color on hover */
+    }
+
+    aside ul li a:hover {
+      color: #ffffff;
+      /* Ensure the text color remains white on hover */
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
+    <!-- Desktop sidebar -->
+    <aside class="z-20 hidden w-64 overflow-y-auto bg-blue-600 md:block flex-shrink-0"
+      style="background-color:#394263; width: 258px;">
+      <div class="py-4 text-gray-500">
+        <a class="ml-6 text-lg font-bold text-white" style="margin-left:40px" href="index.html">
+          Driving Exam
+        </a>
+        <!-- Main Menu of sidebar -->
+        <!-- Main Menu of sidebar -->
+        <ul class="mt-6">
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="index.html">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                </path>
+              </svg>
+              <span class="ml-4">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="#" onclick="toggleSubMenu(event)">
+              <div class="flex items-center">
+                <!-- User Management SVG -->
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v2H4v-2z" />
+                </svg>
+                <span class="ml-4">User Management</span>
+                <i class="fa-solid fa-caret-down text-lg" style="margin-left:35px"></i>
+              </div>
+            </a>
+
+            <!-- Combined Submenu -->
+            <ul class="submenu hidden mt-2">
+              <li class="relative px-2 py-2" id="user-master">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="user_master.html">
+                  <!-- User Master SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M12 11c1.656 0 3-1.344 3-3s-1.344-3-3-3-3 1.344-3 3 1.344 3 3 3zm0 2c-2.672 0-8 1.344-8 4v2h16v-2c0-2.656-5.328-4-8-4z" />
+                  </svg>
+                  User Master
+                </a>
+              </li>
+              <li class="relative px-2 py-2" id="user-category">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="usercategory.html"
+                  onclick="setActive(event)">
+                  <!-- User Category SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15l-1 1-1-1V9h2v8zM11 7V5h2v2h-2z" />
+                  </svg>
+                  User Category
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="#" onclick="toggleSubMenu(event)">
+              <div class="flex items-center">
+                <!-- SVG Icon -->
+                <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 2L2 7h20L12 2z" />
+                  <path d="M2 7v10l10 5 10-5V7H2z" />
+                </svg>
+                <!-- Text and Caret -->
+                <span class="ml-4 flex items-center whitespace-nowrap">Master Management
+                  <i class="fa-solid fa-caret-down text-lg ml-2" style="margin-left:20px"></i>
+                </span>
+              </div>
+            </a>
+
+            <!-- Road Sign Submenu -->
+            <ul class="submenu hidden mt-2" id="road-sign-submenu">
+              <li class="relative px-2 py-2 active">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="province-master.html">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M3 11l8-8m0 0l8 8M5.64 19.36A9 9 0 1120.36 5.64l-8 8-6.72 6.72z" />
+                  </svg>
+                  Province Master
+                </a>
+              </li>
+              <li class="relative px-2 py-2">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="examtype_master.html">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 00-10 10h2a8 8 0 1116 0h2a10 10 0 00-10-10zM12 16l-1 1-1-1v-6h2v6z" />
+                  </svg>
+                  Exam type master
+                </a>
+              </li>
+              <li class="relative px-2 py-2">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="question_category.html">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M3 7h18v14H3V7zm2-4h4l2 2h8v2H5V3z" />
+                  </svg>
+                  Question Category
+                </a>
+              </li>
+              <li class="relative px-2 py-2">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="question_bank.html">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19V5a2 2 0 012-2h11a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2zm12-13H6v2h10V6z" />
+                  </svg>
+                  Question Bank
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="#" onclick="toggleSubMenu(event)">
+              <div class="flex items-center">
+                <!-- User Management SVG -->
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z" />
+                  <path d="M16.5 9.4L12 12M12 12L7.5 9.4M12 12v7.5" />
+                </svg>
+                <span class="ml-4">Package Management</span>
+                <i class="fa-solid fa-caret-down text-lg ml-2" style="margin-left: 10px;"></i>
+              </div>
+            </a>
+
+            <!-- Combined Submenu -->
+            <ul class="submenu hidden mt-2">
+              <li class="relative px-2 py-2" id="user-master">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="package_master.html">
+                  <!-- User Master SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M9 2h6a2 2 0 012 2v1h3a2 2 0 012 2v13a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2h3V4a2 2 0 012-2zM9 2v3h6V2" />
+                    <path d="M9 11h6M9 15h6" />
+                  </svg>
+                  Package Master
+                </a>
+              </li>
+              <li class="relative px-2 py-2" id="user-category">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="package_configuration.html">
+                  <!-- User Category SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M10.94 2.07c.53-.18 1.1-.18 1.64 0l1.48.49a2 2 0 011.29 1.29l.49 1.48a2 2 0 00.5.78l1.17 1.17a2 2 0 00.78.5l1.48.49a2 2 0 011.29 1.29l.49 1.48c.18.53.18 1.1 0 1.64l-.49 1.48a2 2 0 01-1.29 1.29l-1.48.49a2 2 0 00-.78.5l-1.17 1.17a2 2 0 00-.5.78l-.49 1.48a2 2 0 01-1.29 1.29l-1.48.49c-.53.18-1.1.18-1.64 0l-1.48-.49a2 2 0 01-1.29-1.29l-.49-1.48a2 2 0 00-.5-.78l-1.17-1.17a2 2 0 00-.78-.5l-1.48-.49a2 2 0 01-1.29-1.29l-.49-1.48c-.18-.53-.18-1.1 0-1.64l.49-1.48a2 2 0 011.29-1.29l1.48-.49a2 2 0 00.78-.5l1.17-1.17a2 2 0 00.5-.78l.49-1.48a2 2 0 011.29-1.29l1.48-.49z" />
+                    <path d="M12 9v6m-3-3h6" />
+                  </svg>
+                  Package Configuration
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+
+    <!-- Mobile sidebar -->
+    <!-- Backdrop -->
+    <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+      x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"></div>
+    <aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+      x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+      x-transition:enter-start="opacity-0 transform -translate-x-20" x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="isSideMenuOpen = false"
+      @keydown.escape="isSideMenuOpen = false" style="background-color:#394263; width:235px;">
+      <div class="py-4 text-gray-500 dark:text-gray-400">
+        <a class="ml-6 text-lg font-bold text-white" style="margin-left:40px" href="#">
+          Driving Exam
+        </a>
+        <!-- Main Menu of sidebar -->
+        <ul class="mt-6">
+          <li class="relative px-6 py-3 active">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="index.html">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                </path>
+              </svg>
+              <span class="ml-4">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="profile.html">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  d="M5.121 17.804A10 10 0 0112 2a10 10 0 016.879 15.804M8.235 18.236A10.002 10.002 0 0112 22a10.002 10.002 0 013.765-3.764M9 12a3 3 0 116 0 3 3 0 01-6 0z" />
+              </svg>
+              <span class="ml-4">User Profile</span>
+            </a>
+          </li>
+
+
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="#" onclick="toggleSubMenu(event)">
+              <div class="flex items-center">
+                <!-- User Management SVG -->
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v2H4v-2z" />
+                </svg>
+                <span class="ml-4">User Management</span>
+                <i class="fa-solid fa-caret-down text-lg ml-2"></i>
+              </div>
+            </a>
+
+            <!-- Combined Submenu -->
+            <ul class="submenu hidden mt-2">
+              <li class="relative px-2 py-2" id="user-master">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="user_master.html">
+                  <!-- User Master SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M12 11c1.656 0 3-1.344 3-3s-1.344-3-3-3-3 1.344-3 3 1.344 3 3 3zm0 2c-2.672 0-8 1.344-8 4v2h16v-2c0-2.656-5.328-4-8-4z" />
+                  </svg>
+                  User Master
+                </a>
+              </li>
+              <li class="relative px-2 py-2" id="user-category">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="usercategory.html"
+                  onclick="setActive(event)">
+                  <!-- User Category SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15l-1 1-1-1V9h2v8zM11 7V5h2v2h-2z" />
+                  </svg>
+                  User Category
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="#" onclick="toggleSubMenu(event)">
+              <div class="flex items-center">
+                <!-- SVG Icon -->
+                <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 2L2 7h20L12 2z" />
+                  <path d="M2 7v10l10 5 10-5V7H2z" />
+                </svg>
+                <!-- Text and Caret -->
+                <span class="ml-4 flex items-center whitespace-nowrap">Master Management
+                  <i class="fa-solid fa-caret-down text-lg ml-2"></i>
+                </span>
+              </div>
+            </a>
+
+            <!-- Road Sign Submenu -->
+            <ul class="submenu hidden mt-2" id="road-sign-submenu">
+              <li class="relative px-2 py-2 active">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="province-master.html">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M3 11l8-8m0 0l8 8M5.64 19.36A9 9 0 1120.36 5.64l-8 8-6.72 6.72z" />
+                  </svg>
+                  Province Master
+                </a>
+              </li>
+              <li class="relative px-2 py-2">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="examtype_master.html">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 00-10 10h2a8 8 0 1116 0h2a10 10 0 00-10-10zM12 16l-1 1-1-1v-6h2v6z" />
+                  </svg>
+                  Exam type master
+                </a>
+              </li>
+              <li class="relative px-2 py-2">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="#">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M3 7h18v14H3V7zm2-4h4l2 2h8v2H5V3z" />
+                  </svg>
+                  Question Category
+                </a>
+              </li>
+              <li class="relative px-2 py-2">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="#">
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19V5a2 2 0 012-2h11a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2zm12-13H6v2h10V6z" />
+                  </svg>
+                  Question Bank
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 hover:text-gray-300"
+              href="#" onclick="toggleSubMenu(event)">
+              <div class="flex items-center">
+                <!-- User Management SVG -->
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z" />
+                  <path d="M16.5 9.4L12 12M12 12L7.5 9.4M12 12v7.5" />
+                </svg>
+                <span class="ml-4">Package Management</span>
+                <i class="fa-solid fa-caret-down text-lg ml-2"></i>
+              </div>
+            </a>
+
+            <!-- Combined Submenu -->
+            <ul class="submenu hidden mt-2">
+              <li class="relative px-2 py-2" id="user-master">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="#">
+                  <!-- User Master SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M9 2h6a2 2 0 012 2v1h3a2 2 0 012 2v13a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2h3V4a2 2 0 012-2zM9 2v3h6V2" />
+                    <path d="M9 11h6M9 15h6" />
+                  </svg>
+                  Package Master
+                </a>
+              </li>
+              <li class="relative px-2 py-2" id="user-category">
+                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="#"
+                  onclick="setActive(event)">
+                  <!-- User Category SVG (Different Icon) -->
+                  <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M10.94 2.07c.53-.18 1.1-.18 1.64 0l1.48.49a2 2 0 011.29 1.29l.49 1.48a2 2 0 00.5.78l1.17 1.17a2 2 0 00.78.5l1.48.49a2 2 0 011.29 1.29l.49 1.48c.18.53.18 1.1 0 1.64l-.49 1.48a2 2 0 01-1.29 1.29l-1.48.49a2 2 0 00-.78.5l-1.17 1.17a2 2 0 00-.5.78l-.49 1.48a2 2 0 01-1.29 1.29l-1.48.49c-.53.18-1.1.18-1.64 0l-1.48-.49a2 2 0 01-1.29-1.29l-.49-1.48a2 2 0 00-.5-.78l-1.17-1.17a2 2 0 00-.78-.5l-1.48-.49a2 2 0 01-1.29-1.29l-.49-1.48c-.18-.53-.18-1.1 0-1.64l.49-1.48a2 2 0 011.29-1.29l1.48-.49a2 2 0 00.78-.5l1.17-1.17a2 2 0 00.5-.78l.49-1.48a2 2 0 011.29-1.29l1.48-.49z" />
+                    <path d="M12 9v6m-3-3h6" />
+                  </svg>
+                  Package Configuration
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="flex flex-col flex-1">
+      <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800" style="background-color:#f9fafc">
+        <div class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-300">
+          <!-- Mobile hamburger -->
+          <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+            @click="toggleSideMenu" aria-label="Menu">
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+          <!-- Search input -->
+          <div class="flex flex-1 lg:mr-32 justify-start">
+            <div class="relative w-full max-w-xl mr-6 focus-within:text-blue-500">
+              <div class="absolute inset-y-0 flex items-center pl-2">
+                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <input
+                class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-blue-300 focus:outline-none focus:shadow-outline-blue form-input"
+                type="text" placeholder="Search for projects" aria-label="Search" />
+            </div>
+          </div>
+
+          <ul class="flex items-center flex-shrink-0 space-x-6">
+            <!-- Theme toggler -->
+            <li class="flex">
+              <button class="rounded-md focus:outline-none focus:shadow-outline-blue" @click="toggleTheme"
+                aria-label="Toggle color mode">
+                <template x-if="!dark">
+                  <svg class="w-5 h-5 text-black" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">
+                    </path>
+                  </svg>
+                </template>
+                <template x-if="dark">
+                  <svg class="w-5 h-5 text-black" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </template>
+              </button>
+            </li>
+            <!-- Notifications menu -->
+            <li class="relative">
+              <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-blue"
+                @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications"
+                aria-haspopup="true">
+                <svg class="w-5 h-5 text-black" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
+                  </path>
+                </svg>
+                <!-- Notification badge -->
+                <span aria-hidden="true"
+                  class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-blue-600 border-2 border-white rounded-full dark:border-gray-800"></span>
+              </button>
+              <template x-if="isNotificationsMenuOpen">
+                <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
+                  x-transition:leave-end="opacity-0" @click.away="closeNotificationsMenu"
+                  @keydown.escape="closeNotificationsMenu"
+                  class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
+                  aria-label="submenu">
+                  <li class="flex">
+                    <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                      href="#">
+                      <span>Messages</span>
+                      <span
+                        class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-blue-600 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-600">
+                        13
+                      </span>
+                    </a>
+                  </li>
+                  <li class="flex">
+                    <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                      href="#">
+                      <span>Sales</span>
+                      <span
+                        class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-blue-600 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-600">
+                        2
+                      </span>
+                    </a>
+                  </li>
+                  <li class="flex">
+                    <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                      href="#">
+                      <span>Alerts</span>
+                    </a>
+                  </li>
+                </ul>
+              </template>
+            </li>
+
+            <!-- Profile menu -->
+            <li class="relative">
+              <button class="align-middle rounded-full focus:shadow-outline-blue focus:outline-none"
+                @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
+                <img class="object-cover w-8 h-8 rounded-full"
+                  src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                  alt="" aria-hidden="true" />
+              </button>
+              <template x-if="isProfileMenuOpen">
+                <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
+                  x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu"
+                  class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
+                  <li class="flex">
+                    <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                      href="profile.html">Profile</a>
+                  </li>
+                  <li class="flex">
+                    <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                      href="index.html">Settings</a>
+                  </li>
+                  <li class="flex">
+                    <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                      href="pages/login.html">Logout</a>
+                  </li>
+                </ul>
+              </template>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <main class="h-full pb-16 overflow-y-auto">
+        <div class="container px-6 mx-auto grid">
+          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            User Profile
+          </h2>
+          <!-- CTA -->
+          <!-- General elements -->
+          <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+
+            <!-- Profile Image Upload -->
+            <label class="block text-sm mb-4">
+              <span class="text-gray-700 dark:text-gray-400">Profile Image</span>
+              <input type="file"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+            </label>
+
+            <!-- Name Field -->
+            <label class="block text-sm mb-4">
+              <span class="text-gray-700 dark:text-gray-400">Name</span>
+              <input type="text"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="Jane Doe" />
+            </label>
+
+            <!-- Email Field -->
+            <label class="block text-sm mb-4">
+              <span class="text-gray-700 dark:text-gray-400">Email</span>
+              <input type="email"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="jane.doe@example.com" />
+            </label>
+
+            <!-- Date of Birth Field -->
+            <label class="block text-sm mb-4">
+              <span class="text-gray-700 dark:text-gray-400">Date of Birth</span>
+              <input type="date"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+            </label>
+
+            <!-- State Dropdown -->
+            <label class="block text-sm mb-4">
+              <span class="text-gray-700 dark:text-gray-400">provinces</span>
+              <select
+                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:focus:shadow-outline-gray">
+                <option>Select State</option>
+                <option>Alberta</option>
+                <option>Manitoba</option>
+                <option>New Brunswick</option>
+                <option>Nova Scotia</option>
+                <option>British Columbia</option>
+                <option>Ontario</option>
+                <option>Newfoundland</option>
+                <option>Labrador</option>
+                <option>Prince Edward Island</option>
+                <option>Quebec</option>
+                <option>Saskatchewan</option>
+
+              </select>
+            </label>
+
+            <!-- Country Dropdown -->
+            <label class="block text-sm mb-4">
+              <span class="text-gray-700 dark:text-gray-400">Country</span>
+              <select
+                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:focus:shadow-outline-gray">
+                <option>Select Country</option>
+                <option>India</option>
+                <option>Australiya</option>
+                <option>England</option>
+                <option>USA</option>
+                <option>Canada</option>
+              </select>
+            </label>
+
+            <!-- Save Changes Button -->
+            <div class="flex justify-end mt-4">
+              <button onclick="openEditModal()"
+                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-green-700 mr-2">
+                Edit
+              </button>
+              <button onclick="saveProfile()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                Save
+              </button>
+            </div>
+          </div>
+          <!-- Validation inputs -->
+        </div>
+      </main>
+    </div>
+  </div>
+  <!-- Edit profile -->
+  <div id="editProfileModal" class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 md:w-1/2 lg:w-1/3 h-auto">
+      <h2 class="text-xl font-semibold mb-4">Edit Profile</h2>
+
+      <label class="block text-sm mb-4">
+        <span class="text-gray-700 dark:text-gray-400">Name</span>
+        <input type="text" id="editName"
+          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+          placeholder="Jane Doe" />
+      </label>
+
+      <label class="block text-sm mb-4">
+        <span class="text-gray-700 dark:text-gray-400">Email</span>
+        <input type="email" id="editEmail"
+          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+          placeholder="jane.doe@example.com" />
+      </label>
+
+      <label class="block text-sm mb-4">
+        <span class="text-gray-700 dark:text-gray-400">Date of Birth</span>
+        <input type="date" id="editDOB"
+          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+      </label>
+
+      <label class="block text-sm mb-4">
+        <span class="text-gray-700 dark:text-gray-400">provinces</span>
+        <select id="editState"
+          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
+          <option>Select State</option>
+          <option>Alberta</option>
+          <option>Manitoba</option>
+          <option>New Brunswick</option>
+          <option>Nova Scotia</option>
+          <option>British Columbia</option>
+          <option>Ontario</option>
+          <option>Newfoundland</option>
+          <option>Labrador</option>
+          <option>Prince Edward Island</option>
+          <option>Quebec</option>
+          <option>Saskatchewan</option>
+          <!-- Add more states as needed -->
+        </select>
+      </label>
+
+      <label class="block text-sm mb-4">
+        <span class="text-gray-700 dark:text-gray-400">Country</span>
+        <select id="editCountry"
+          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
+          <option value="">Select Country</option>
+          <option value="United States">United States</option>
+          <option value="Canada">Canada</option>
+          <option value="India">India</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <!-- Add more countries as needed -->
+        </select>
+      </label>
+
+      <div class="flex justify-end">
+        <button onclick="updateProfile()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mr-2">
+          Save
+        </button>
+        <button onclick="closeEditModal()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openEditModal() {
+      // Open the modal
+      document.getElementById('editProfileModal').classList.remove('hidden');
+    }
+
+    function closeEditModal() {
+      // Close the modal
+      document.getElementById('editProfileModal').classList.add('hidden');
+    }
+
+    function updateProfile() {
+      // Get the values from the input fields
+      const name = document.getElementById('editName').value;
+      const email = document.getElementById('editEmail').value;
+      const dob = document.getElementById('editDOB').value;
+      const state = document.getElementById('editState').value;
+      const country = document.getElementById('editCountry').value;
+      const height = document.getElementById('editHeight').value;
+      const width = document.getElementById('editWidth').value;
+
+      // Update the profile information
+      // You can implement the logic to save this information (e.g., via an API call)
+
+      console.log("Profile Updated:", { name, email, dob, state, country, height, width });
+
+      // Close the modal after saving
+      closeEditModal();
+    }
+    function toggleSubMenu(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      const submenu = event.currentTarget.nextElementSibling;
+      submenu.classList.toggle('hidden'); // Toggle the 'hidden' class to show/hide the submenu
+    } 
+  </script>
+</body>
+
+</html>
