@@ -211,7 +211,7 @@
                   Package Master
                 </a>
               </li>
-             
+
             </ul>
           </li>
         </ul>
@@ -853,13 +853,15 @@
           <div class="bg-white rounded-lg overflow-hidden shadow-xl z-10 max-w-xl w-full h-auto">
             <div class="p-6">
               <h3 class="text-lg font-semibold mb-4">Add Category</h3>
-              <form id="addSignForm" onsubmit="submitAddSign(event)">
+              <form id="addSignForm" >
                 <div class="mb-4">
-                  <label class="block text-gray-700">Category</label>
+                  <label class="block text-gray-700" for="categoryName">Category</label>
                   <input type="text" id="categoryName" class="border border-gray-300 rounded w-full p-2" required>
+                  <div id="categoryNameError" class="text-red-600 text-sm mt-1 hidden">Please enter a category name.
+                  </div>
                 </div>
-                <div class="flex justify-end mt-6"> <!-- Ensure this is visible -->
-                  <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">Add</button>
+                <div class="flex justify-end mt-6">
+                  <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" onClick="submitAddSign(event)">Add</button>
                   <button type="button" onclick="closeAddSignModal()"
                     class="ml-2 px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700">Cancel</button>
                 </div>
@@ -881,6 +883,7 @@
   </script>
 
   <script src="./assets/js/script.js"></script>
+  <script src="./Api/user_master/user_category.js"></script>
 </body>
 
 </html>
