@@ -187,7 +187,8 @@
                                 </a>
                             </li>
                             <li class="relative px-2 py-2">
-                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="examtype_master.html">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="examtype_master.html">
                                     <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                         stroke-width="2">
                                         <path
@@ -250,7 +251,7 @@
                                     Package Master
                                 </a>
                             </li>
-                           
+
                         </ul>
                     </li>
                 </ul>
@@ -375,7 +376,8 @@
                                 </a>
                             </li>
                             <li class="relative px-2 py-2">
-                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300" href="examtype_master.html">
+                                <a class="inline-flex items-center text-xs text-white hover:text-gray-300"
+                                    href="examtype_master.html">
                                     <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                         stroke-width="2">
                                         <path
@@ -934,266 +936,46 @@
                     </div>
                 </div>
             </main>
-            <!-- Main Section -->
-            <!-- <main class="h-full pb-16 overflow-y-auto">
-                <div class="container-fluid px-6 mx-auto grid">
-
-                    <div class="bg-container">
-                        <h2 class="my-3 text-2xl font-semibold text-white dark:text-white">
-                            Add Questions <br>
-                        </h2>
-                        <h6 class="text-xl font-semibold text-white dark:text-white">
-                            Select Vehicle
-                        </h6>
-
-                         Car and Commercial Buttons -->
-            <!-- <div class="flex space-x-4 mt-4">
-                            <button id="carBtn" onclick="showCarStates()"
-                                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-                                style="background-color:#1fa35a;">
-                                Car
-                            </button>
-                            <button id="commercialBtn" onclick="showCommercialStates()"
-                                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-                                style="background-color:#1fa35a;">
-                                Commercial
-                            </button>
-                        </div> -->
-            <!-- Dropdown for States (hidden initially) -->
-            <!-- <div id="stateDropdown" class="hidden">
-                            <label class="block text-sm mb-4">
-                                <span class="text-black-700 text-black-700 dark:text-black-400">Select State</span>
-                                <select id="stateSelect" onchange="redirectToQuestionPage()"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
-                                    <option value="" disabled selected>Select state</option>
-                                     Options will be added dynamically -->
-            <!-- </select>
-                            </label>
-                        </div> 
-
-                        <div id="stateDropdown" class="hidden mb-4">
-                            <label class="block text-sm mb-4">
-                                <span class="text-gray-700 dark:text-gray-400">Select State</span>
-                                <select id="stateSelect" onchange="redirectToQuestionPage()"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
-                                    <option value="" disabled selected>Select State</option>
-                                    <option value="california">California</option>
-                                    <option value="texas">Texas</option>
-                                    <option value="new_york">New York</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
-                    <br><br> -->
-
-            <!-- Questions Table -->
-            <!-- <div id="questionsTable" class="mt-4">
-                        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 text-center">MCQ Questions
-                        </h3>
-                        <div class="flex justify-center space-x-4 mt-2">
-                            
-                            <label class="block mb-4">
-                                <span class="text-black text-lg mr-5">Filter</span>
-                                <select
-                                    class="inline-block w-auto mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
-                                    <option value="" disabled selected>Select Car</option>
-                                    <option value="car1">Car 1</option>
-                                    <option value="car2">Car 2</option>
-                                    <option value="car3">Car 3</option>
-                                </select>
-                            </label>
-
-                            
-                            <label class="block mb-4">
-                                <select
-                                    class="inline-block w-auto mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-select">
-                                    <option value="" disabled selected>Select State</option>
-                                    <option value="state1">State 1</option>
-                                    <option value="state2">State 2</option>
-                                    <option value="state3">State 3</option>
-                                </select>
-                            </label>
-                        </div>
-                        <table class="min-w-full mt-2 bg-white border border-gray-200" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th class="py-2 px-4 border-b">Question</th>
-                                    <th class="py-2 px-4 border-b">Image</th> 
-                                    <th class="py-2 px-4 border-b">Options</th>
-                                    <th class="py-2 px-4 border-b">Correct Answer</th>
-                                    <th class="py-2 px-4 border-b">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="questionsBody">
-                               
-                                <tr>
-                                    <td class="py-2 px-4 border-b">What is the main function of an engine in a vehicle?
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <img src="./assets/img/pngwing.com (1).png" alt="Engine Image"
-                                            class="h-12 w-12">
-                                     
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <ul class="list-disc pl-6">
-                                            <li>A. To provide power to the wheels</li>
-                                            <li>B. To control the steering</li>
-                                            <li>C. To improve fuel efficiency</li>
-                                            <li>D. To maintain the vehicle's temperature</li>
-                                        </ul>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="text-center font-semibold">A</div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="flex justify-center space-x-4"> 
-                                            <button onclick="editQuestion(0)"
-                                                class="text-green-500 hover:text-green-600">
-                                                <i class="fas fa-edit fa-lg"></i> 
-                                            </button>
-                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
-                                                <i class="fas fa-trash fa-lg"
-                                                    style="color: rgb(209, 41, 41) !important;"></i>
-                                                
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b">Which of the following is a common type of vehicle
-                                        transmission?</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <img src="./assets/img/pngwing.com (2).png" alt="Transmission Image"
-                                            class="h-12 w-12">
-                                        
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <ul class="list-disc pl-6">
-                                            <li>A. Automatic</li>
-                                            <li>B. Manual</li>
-                                            <li>C. Semi-automatic</li>
-                                            <li>D. All of the above</li>
-                                        </ul>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="text-center font-semibold">D</div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="flex justify-center space-x-4"> 
-                                            <button onclick="editQuestion(0)"
-                                                class="text-green-500 hover:text-green-600">
-                                                <i class="fas fa-edit fa-lg"></i> 
-                                            </button>
-                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
-                                                <i class="fas fa-trash fa-lg"
-                                                    style="color: rgb(209, 41, 41) !important;"></i>
-                                               
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b">What is the purpose of brakes in a vehicle?</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <img src="" alt="NA" class="h-16 w-16">
-                                        
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <ul class="list-disc pl-6">
-                                            <li>A. To increase speed</li>
-                                            <li>B. To slow down or stop the vehicle</li>
-                                            <li>C. To change gears</li>
-                                            <li>D. To enhance fuel economy</li>
-                                        </ul>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="text-center font-semibold">B</div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="flex justify-center space-x-4"> 
-                                            <button onclick="editQuestion(0)"
-                                                class="text-green-500 hover:text-green-600">
-                                                <i class="fas fa-edit fa-lg"></i> 
-                                            </button>
-                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
-                                                <i class="fas fa-trash fa-lg"
-                                                    style="color: rgb(209, 41, 41) !important;"></i>
-                                                
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b">Which type of fuel is commonly used in petrol
-                                        vehicles?</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <img src="" alt="NA" class="h-16 w-16"> 
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <ul class="list-disc pl-6">
-                                            <li>A. Diesel</li>
-                                            <li>B. Gasoline</li>
-                                            <li>C. Ethanol</li>
-                                            <li>D. CNG</li>
-                                        </ul>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="text-center font-semibold">B</div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="flex justify-center space-x-4"> 
-                                            <button onclick="editQuestion(0)"
-                                                class="text-green-500 hover:text-green-600">
-                                                <i class="fas fa-edit fa-lg"></i> 
-                                            </button>
-                                            <button onclick="deleteQuestion(0)" class="text-red-500 hover:text-red-600">
-                                                <i class="fas fa-trash fa-lg"
-                                                    style="color: rgb(209, 41, 41) !important;"></i>
-                                                
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
         </div>
-        </main>
-        <div id="addSignModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title"
-            role="dialog" aria-modal="true">
-            <div class="flex items-center justify-center min-h-screen px-4">
-                <div class="fixed inset-0 bg-black opacity-50"></div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-xl z-10 max-w-xl w-full h-auto">
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold mb-4">Add Province</h3>
-                        <form id="addSignForm" onsubmit="submitAddSign(event)">
-                            <div class="mb-4">
-                                <label class="block text-gray-700">Province Name</label>
-                                <input type="text" id="categoryName" class="border border-gray-300 rounded w-full p-2"
-                                    required>
-                            </div>
-                            <div class="flex justify-end mt-6"> <!-- Ensure this is visible -->
-                                <button type="submit"
-                                    class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">Add</button>
-                                <button type="button" onclick="closeAddSignModal()"
-                                    class="ml-2 px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
+    </div>
+    <div id="addSignModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="fixed inset-0 bg-black opacity-50"></div>
+            <div class="bg-white rounded-lg overflow-hidden shadow-xl z-10 max-w-xl w-full h-auto">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Add Province</h3>
+                    <form id="addSignForm">
+                        <div class="mb-4">
+                            <label class="block text-gray-700" for="provinceName">Province Name</label>
+                            <input type="text" id="provinceName" class="border border-gray-300 rounded w-full p-2"
+                                required>
+                            <div id="provinceNameError" class="text-red-600 text-sm mt-1 hidden">Please enter a province
+                                name.</div>
+                        </div>
+                        <div class="flex justify-end mt-6">
+                            <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                                onclick="submitAddSign(event)">Add</button>
+                            <button type="button" onclick="closeAddSignModal()"
+                                class="ml-2 px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     </div>
+    </div>
+    <script src="./Api/master_management/province_master.js"></script>
     <script>
         function openAddSignModal() {
-          document.getElementById('addSignModal').classList.remove('hidden');
+            document.getElementById('addSignModal').classList.remove('hidden');
         }
-    
+
         function closeAddSignModal() {
-          document.getElementById('addSignModal').classList.add('hidden');
+            document.getElementById('addSignModal').classList.add('hidden');
         }
-      </script>
+    </script>
     <!-- <script>
         const carStates = [
             'Ontario', 'Quebec', 'Nova Scotia', 'New Brunswick', 'Manitoba',

@@ -87,9 +87,6 @@
             }
         });
     </script>
-</head>
-
-<body>
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
         <!-- Desktop sidebar -->
         <aside class="z-20 hidden w-64 overflow-y-auto bg-blue-600 md:block flex-shrink-0"
@@ -629,105 +626,195 @@
                                     </thead>
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                         <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3"><p class="font-semibold">Driving Test</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">50</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">60 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">1.2 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">1</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">35</p></td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Driving Test</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">50</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">60 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">1.2 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">1</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">35</p>
+                                            </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
-                                                    <a href="javascript:void(0);" class="text-blue-600 hover:text-blue-800" onclick="viewData('Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-blue-600 hover:text-blue-800"
+                                                        onclick="viewData('Driving Test')">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-green-600 hover:text-green-800" onclick="editData('Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-green-600 hover:text-green-800"
+                                                        onclick="editData('Driving Test')">
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-red-600 hover:text-red-800" onclick="deleteData('Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-red-600 hover:text-red-800"
+                                                        onclick="deleteData('Driving Test')">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3"><p class="font-semibold">Written Exam</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">100</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">90 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">0.9 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">2</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">50</p></td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Written Exam</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">100</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">90 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">0.9 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">2</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">50</p>
+                                            </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
-                                                    <a href="javascript:void(0);" class="text-blue-600 hover:text-blue-800" onclick="viewData('Written Exam')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-blue-600 hover:text-blue-800"
+                                                        onclick="viewData('Written Exam')">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-green-600 hover:text-green-800" onclick="editData('Written Exam')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-green-600 hover:text-green-800"
+                                                        onclick="editData('Written Exam')">
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-red-600 hover:text-red-800" onclick="deleteData('Written Exam')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-red-600 hover:text-red-800"
+                                                        onclick="deleteData('Written Exam')">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3"><p class="font-semibold">Practical Test</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">20</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">30 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">1.5 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">3</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">70</p></td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Practical Test</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">20</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">30 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">1.5 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">3</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">70</p>
+                                            </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
-                                                    <a href="javascript:void(0);" class="text-blue-600 hover:text-blue-800" onclick="viewData('Practical Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-blue-600 hover:text-blue-800"
+                                                        onclick="viewData('Practical Test')">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-green-600 hover:text-green-800" onclick="editData('Practical Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-green-600 hover:text-green-800"
+                                                        onclick="editData('Practical Test')">
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-red-600 hover:text-red-800" onclick="deleteData('Practical Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-red-600 hover:text-red-800"
+                                                        onclick="deleteData('Practical Test')">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3"><p class="font-semibold">Advanced Driving Test</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">30</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">45 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">1.5 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">4</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">80</p></td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Advanced Driving Test</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">30</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">45 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">1.5 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">4</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">80</p>
+                                            </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
-                                                    <a href="javascript:void(0);" class="text-blue-600 hover:text-blue-800" onclick="viewData('Advanced Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-blue-600 hover:text-blue-800"
+                                                        onclick="viewData('Advanced Driving Test')">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-green-600 hover:text-green-800" onclick="editData('Advanced Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-green-600 hover:text-green-800"
+                                                        onclick="editData('Advanced Driving Test')">
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-red-600 hover:text-red-800" onclick="deleteData('Advanced Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-red-600 hover:text-red-800"
+                                                        onclick="deleteData('Advanced Driving Test')">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3"><p class="font-semibold">Night Driving Test</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">40</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">75 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">1.875 minutes</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">5</p></td>
-                                            <td class="px-4 py-3"><p class="font-semibold">70</p></td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">Night Driving Test</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">40</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">75 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">1.875 minutes</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">5</p>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">70</p>
+                                            </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
-                                                    <a href="javascript:void(0);" class="text-blue-600 hover:text-blue-800" onclick="viewData('Night Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-blue-600 hover:text-blue-800"
+                                                        onclick="viewData('Night Driving Test')">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-green-600 hover:text-green-800" onclick="editData('Night Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-green-600 hover:text-green-800"
+                                                        onclick="editData('Night Driving Test')">
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </a>&nbsp;
-                                                    <a href="javascript:void(0);" class="text-red-600 hover:text-red-800" onclick="deleteData('Night Driving Test')">
+                                                    <a href="javascript:void(0);"
+                                                        class="text-red-600 hover:text-red-800"
+                                                        onclick="deleteData('Night Driving Test')">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>
@@ -746,49 +833,70 @@
                     <div class="fixed inset-0 bg-black opacity-50"></div>
                     <div class="bg-white rounded-lg overflow-hidden shadow-xl z-10 max-w-xl w-full h-auto">
                         <div class="p-6">
-                            <h3 class="text-lg font-semibold mb-4">Add ExamType</h3>
-                            <form id="addSignForm" onsubmit="submitAddSign(event)">
-                                <!-- Question -->
+                            <h3 class="text-lg font-semibold mb-4">Add Exam Type</h3>
+                            <form id="addSignForm" >
+                                <!-- Exam Cat Description -->
                                 <div class="mb-4">
-                                    <label class="block text-gray-700">Exam_Cat_Description</label>
-                                    <input type="text" id="question" class="border border-gray-300 rounded w-full p-2"
-                                        required>
+                                    <label class="block text-gray-700" for="examCatDescription">Exam Cat
+                                        Description</label>
+                                    <input type="text" id="examCatDescription"
+                                        class="border border-gray-300 rounded w-full p-2" required>
+                                    <div id="examCatDescriptionError" class="text-red-600 text-sm mt-1 hidden">Please
+                                        enter an exam category description.</div>
                                 </div>
+
+                                <!-- Total Questions -->
                                 <div class="mb-4">
-                                    <label class="block text-gray-700">Total_Question</label>
-                                    <input type="text" id="question" class="border border-gray-300 rounded w-full p-2"
-                                        required>
+                                    <label class="block text-gray-700" for="totalQuestions">Total Questions</label>
+                                    <input type="number" id="totalQuestions"
+                                        class="border border-gray-300 rounded w-full p-2" required>
+                                    <div id="totalQuestionsError" class="text-red-600 text-sm mt-1 hidden">Please enter
+                                        the total number of questions.</div>
                                 </div>
+
+                                <!-- Total Time -->
                                 <div class="mb-4">
-                                    <label class="block text-gray-700">Total_Time</label>
-                                    <input type="text" id="question" class="border border-gray-300 rounded w-full p-2"
+                                    <label class="block text-gray-700" for="totalTime">Total Time</label>
+                                    <input type="text" id="totalTime" class="border border-gray-300 rounded w-full p-2"
                                         required>
+                                    <div id="totalTimeError" class="text-red-600 text-sm mt-1 hidden">Please enter the
+                                        total time.</div>
                                 </div>
+
+                                <!-- Per Question Time -->
                                 <div class="mb-4">
-                                    <label class="block text-gray-700">Per_Que_Time</label>
-                                    <input type="text" id="question" class="border border-gray-300 rounded w-full p-2"
-                                        required>
+                                    <label class="block text-gray-700" for="perQuestionTime">Per Question Time</label>
+                                    <input type="text" id="perQuestionTime"
+                                        class="border border-gray-300 rounded w-full p-2" required>
+                                    <div id="perQuestionTimeError" class="text-red-600 text-sm mt-1 hidden">Please enter
+                                        the time per question.</div>
                                 </div>
+
+                                <!-- Exam Type -->
                                 <div class="mb-4">
-                                    <label class="block text-gray-700">Exam Type</label>
-                                    <select id="examType" class="border border-gray-300 rounded w-full p-2">
-                                        <option value="">Select Cat_Id</option>
-                                        <option value="theory">John Due</option>
-                                        <option value="practical">Jane smith</option>
-                                        <option value="practical">David Lee</option>
-                                        <option value="practical">Lucas Miller</option>
+                                    <label class="block text-gray-700" for="examType">Exam Type</label>
+                                    <select id="examType" class="border border-gray-300 rounded w-full p-2" required>
+                                        <option value="">Select Exam Type</option>
+                                        <option value="theory">Theory</option>
+                                        <option value="practical">Practical</option>
                                     </select>
+                                    <div id="examTypeError" class="text-red-600 text-sm mt-1 hidden">Please select an
+                                        exam type.</div>
                                 </div>
+
+                                <!-- Required Score -->
                                 <div class="mb-4">
-                                    <label class="block text-gray-700">Req_Score</label>
-                                    <input type="text" id="question" class="border border-gray-300 rounded w-full p-2"
+                                    <label class="block text-gray-700" for="reqScore">Required Score</label>
+                                    <input type="text" id="reqScore" class="border border-gray-300 rounded w-full p-2"
                                         required>
+                                    <div id="reqScoreError" class="text-red-600 text-sm mt-1 hidden">Please enter a
+                                        required score.</div>
                                 </div>
-                
+
                                 <!-- Buttons -->
                                 <div class="flex justify-end mt-6">
                                     <button type="submit"
-                                        class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">Add</button>
+                                        class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" onclick="submitAddSign(event)">Add</button>
                                     <button type="button" onclick="closeAddSignModal()"
                                         class="ml-2 px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700">Cancel</button>
                                 </div>
@@ -797,10 +905,9 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
+    <script src="./Api/master_management/examtype_master.js"></script>
     <script>
         function openAddSignModal() {
             document.getElementById('addSignModal').classList.remove('hidden');
@@ -810,64 +917,6 @@
             document.getElementById('addSignModal').classList.add('hidden');
         }
     </script>
- <!-- <script>
-    const carStates = [
-    'Ontario', 'Quebec', 'Nova Scotia', 'New Brunswick', 'Manitoba',
-    'British Columbia', 'Prince Edward Island', 'Saskatchewan', 'Alberta', 'Newfoundland and Labrador'
-    ];
-
-    const commercialStates = [
-    'Ontario', 'Quebec', 'Nova Scotia', 'New Brunswick', 'Manitoba',
-    'British Columbia', 'Prince Edward Island', 'Saskatchewan', 'Alberta', 'Newfoundland and Labrador'
-    ];
-
-    function showCarStates() {
-    populateStateDropdown(carStates);
-    }
-
-    function showCommercialStates() {
-    populateStateDropdown(commercialStates);
-    }
-
-    function populateStateDropdown(states) {
-    document.getElementById('stateDropdown').classList.remove('hidden');
-    const stateSelect = document.getElementById('stateSelect');
-    stateSelect.innerHTML = '<option value="" disabled selected>Select a state</option>';
-
-    states.forEach(state => {
-    const option = document.createElement('option');
-    option.value = state;
-    option.textContent = state;
-    stateSelect.appendChild(option);
-    });
-    }
-
-    function redirectToQuestionPage() {
-    const selectedState = document.getElementById('stateSelect').value;
-    if (selectedState) {
-    // Redirect to the corresponding HTML file for the selected state
-    const stateFileMapping = {
-    'Ontario': 'ontario.html',
-    'Quebec': 'quebec.html',
-    'Nova Scotia': 'nova-scotia.html',
-    'New Brunswick': 'new-brunswick.html',
-    'Manitoba': 'manitoba.html',
-    'British Columbia': 'british-columbia.html',
-    'Prince Edward Island': 'prince-edward-island.html',
-    'Saskatchewan': 'saskatchewan.html',
-    'Alberta': 'alberta.html',
-    'Newfoundland and Labrador': 'newfoundland-and-labrador.html'
-    };
-
-    const redirectTo = stateFileMapping[selectedState];
-    if (redirectTo) {
-    window.location.href = redirectTo;
-    }
-    }
-    }
-
-
-</script>  -->
-</body>
+    </body>
 
 </html>
