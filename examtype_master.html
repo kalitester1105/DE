@@ -534,12 +534,12 @@
                                     <thead>
                                         <tr
                                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                            <th class="px-4 py-3">Exam_Cat_Description</th>
+                                            <th class="px-4 py-3">Ex_Cat_Id</th>
                                             <th class="px-4 py-3">Total Question</th>
                                             <th class="px-4 py-3">Total Time</th>
                                             <th class="px-4 py-3">Per_Que_Time</th>
-                                            <th class="px-4 py-3">Ex_Cat_Id</th>
                                             <th class="px-4 py-3">Req_Score</th>
+                                            <th class="px-4 py-3">Que_Id</th>
                                             <th class="px-4 py-3">Action</th>
                                         </tr>
                                     </thead>
@@ -558,11 +558,12 @@
                                                 <p class="font-semibold">1.2 minutes</p>
                                             </td>
                                             <td class="px-4 py-3">
-                                                <p class="font-semibold">1</p>
-                                            </td>
-                                            <td class="px-4 py-3">
                                                 <p class="font-semibold">35</p>
                                             </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">1</p>
+                                            </td>
+                                            
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
                                                     <a href="javascript:void(0);"
@@ -597,11 +598,12 @@
                                                 <p class="font-semibold">0.9 minutes</p>
                                             </td>
                                             <td class="px-4 py-3">
-                                                <p class="font-semibold">2</p>
-                                            </td>
-                                            <td class="px-4 py-3">
                                                 <p class="font-semibold">50</p>
                                             </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">2</p>
+                                            </td>
+                                            
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
                                                     <a href="javascript:void(0);"
@@ -636,11 +638,12 @@
                                                 <p class="font-semibold">1.5 minutes</p>
                                             </td>
                                             <td class="px-4 py-3">
-                                                <p class="font-semibold">3</p>
-                                            </td>
-                                            <td class="px-4 py-3">
                                                 <p class="font-semibold">70</p>
                                             </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">3</p>
+                                            </td>
+                                           
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
                                                     <a href="javascript:void(0);"
@@ -675,11 +678,12 @@
                                                 <p class="font-semibold">1.5 minutes</p>
                                             </td>
                                             <td class="px-4 py-3">
-                                                <p class="font-semibold">4</p>
-                                            </td>
-                                            <td class="px-4 py-3">
                                                 <p class="font-semibold">80</p>
                                             </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">4</p>
+                                            </td>
+                                           
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
                                                     <a href="javascript:void(0);"
@@ -714,11 +718,12 @@
                                                 <p class="font-semibold">1.875 minutes</p>
                                             </td>
                                             <td class="px-4 py-3">
-                                                <p class="font-semibold">5</p>
-                                            </td>
-                                            <td class="px-4 py-3">
                                                 <p class="font-semibold">70</p>
                                             </td>
+                                            <td class="px-4 py-3">
+                                                <p class="font-semibold">5</p>
+                                            </td>
+                                            
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
                                                     <a href="javascript:void(0);"
@@ -756,8 +761,8 @@
                             <form id="addSignForm">
                                 <!-- Exam Cat Description -->
                                 <div class="mb-4">
-                                    <label class="block text-gray-700" for="examCatDescription">Exam Cat
-                                        Description</label>
+                                    <label class="block text-gray-700" for="examCatDescription">Ex-Cat-Id
+                                       </label>
                                     <input type="text" id="examCatDescription"
                                         class="border border-gray-300 rounded w-full p-2" required>
                                     <div id="examCatDescriptionError" class="text-red-600 text-sm mt-1 hidden">Please
@@ -791,15 +796,6 @@
                                         the time per question.</div>
                                 </div>
 
-                                <!-- Exam Type -->
-                                <div class="mb-4">
-                                    <label class="block text-gray-700" for="examType">Ex-Cat_ID</label>
-                                    <input type="text" id="examType" class="border border-gray-300 rounded w-full p-2"
-                                        required>
-                                    <div id="examTypeError" class="text-red-600 text-sm mt-1 hidden">Please select an
-                                        exam type.</div>
-                                </div>
-
                                 <!-- Required Score -->
                                 <div class="mb-4">
                                     <label class="block text-gray-700" for="reqScore">Required Score</label>
@@ -807,6 +803,15 @@
                                         required>
                                     <div id="reqScoreError" class="text-red-600 text-sm mt-1 hidden">Please enter a
                                         required score.</div>
+                                </div>
+
+                                <!-- Exam Type -->
+                                <div class="mb-4">
+                                    <label class="block text-gray-700" for="examType">Que_ID</label>
+                                    <input type="text" id="examType" class="border border-gray-300 rounded w-full p-2"
+                                        required>
+                                    <div id="examTypeError" class="text-red-600 text-sm mt-1 hidden">Please select an
+                                        exam type.</div>
                                 </div>
 
                                 <!-- Buttons -->
