@@ -13,80 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="./assets/js/init-alpine.js"></script>
     <link rel="stylesheet" href="path/to/your/styles.css">
-    <style>
-        .list-disc {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        aside ul li {
-            padding-left: 10px;
-            padding-right: 10px;
-            margin-left: 10px;
-            margin-right: 10px;
-            border-radius: 8px;
-        }
-
-        aside ul li:hover {
-            background-color: #58627b;
-            /* Change the background color on hover */
-        }
-
-        aside ul li a:hover {
-            color: #ffffff;
-            /* Ensure the text color remains white on hover */
-        }
-
-        .active {
-            background-color: #58627b;
-        }
-
-
-        .bg-container {
-            background-image: url('./assets/img/Group%20571.png');
-            /* Ensure correct path */
-            background-size: cover;
-            /* Ensures the background image covers the entire container */
-            background-position: center;
-            /* Centers the image */
-            padding: 40px;
-            /* Add padding to space out the content */
-            width: 100%;
-            margin-top: 10px;
-            /* Makes the container full width of the viewport */
-            height: 400px;
-            /* Add a height to ensure visibility */
-            margin: 0;
-            /* Ensures there's no margin around the container */
-            position: relative;
-            /* Ensures positioning is relative */
-            z-index: 1;
-            /* Optional: keeps it above other elements */
-        }
-
-        /* Optional: Adjust the text color if needed for better visibility against the background */
-        .text-gray-700,
-        .text-gray-600 {
-            z-index: 2;
-            /* Keeps text above background */
-        }
-    </style>
-    <script>
-        function toggleSubMenu(event) {
-            event.preventDefault(); // Prevent the default link behavior
-            const submenu = event.currentTarget.nextElementSibling;
-            submenu.classList.toggle('hidden'); // Toggle the 'hidden' class to show/hide the submenu
-        }
-
-        const currentLocation = window.location.pathname;
-        const menuItems = document.querySelectorAll('aside ul li a');
-
-        menuItems.forEach(item => {
-            if (item.href.includes(currentLocation)) {
-                item.parentElement.classList.add('active');
-            }
-        });
-    </script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./Api/master_management/examtype_master.js"></script>
+    
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
         <!-- Desktop sidebar -->
         <aside class="z-20 hidden w-64 overflow-y-auto bg-blue-600 md:block flex-shrink-0"
@@ -907,16 +836,8 @@
             </div>
         </div>
     </div>
-    <script src="./Api/master_management/examtype_master.js"></script>
-    <script>
-        function openAddSignModal() {
-            document.getElementById('addSignModal').classList.remove('hidden');
-        }
-
-        function closeAddSignModal() {
-            document.getElementById('addSignModal').classList.add('hidden');
-        }
-    </script>
+   
+   
     </body>
 
 </html>

@@ -1,0 +1,35 @@
+ /* Ensure canvas size is 300px by 300px */
+ .list-disc {
+  list-style-type: none;
+  padding-left: 0;
+}
+ #myBarChart {
+    width: 600px;
+    height: 00px;
+  }
+
+  .active {
+    background-color: #58627b;
+    /* Active background color test */
+
+  }
+
+  aside ul li {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    /* Adjust margin and padding to control the width of the hover area */
+  }
+
+  aside ul li:hover {
+    background-color: #58627b;
+    /* Change the background color on hover */
+  }
+
+  aside ul li a:hover {
+    color: #ffffff;
+
+    /* Ensure the text color remains white on hover */
+  }

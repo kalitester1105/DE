@@ -18,55 +18,8 @@
   <script src="./assets/js/charts-lines.js" defer></script>
   <script src="./assets/js/charts-pie.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    function toggleSubMenu(event) {
-      event.preventDefault();
-      const submenu = event.currentTarget.nextElementSibling;
-      submenu.classList.toggle('hidden'); // Toggle the visibility of the submenu
-    }
-    const currentLocation = window.location.pathname;
-    const menuItems = document.querySelectorAll('aside ul li a');
-
-    menuItems.forEach(item => {
-      if (item.href.includes(currentLocation)) {
-        item.parentElement.classList.add('active');
-      }
-    });
-  </script>
-
-  <style>
-    /* Ensure canvas size is 300px by 300px */
-    #myBarChart {
-      width: 600px;
-      height: 00px;
-    }
-
-    .active {
-      background-color: #58627b;
-      /* Active background color test */
-
-    }
-
-    aside ul li {
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
-      border-radius: 8px;
-      /* Adjust margin and padding to control the width of the hover area */
-    }
-
-    aside ul li:hover {
-      background-color: #58627b;
-      /* Change the background color on hover */
-    }
-
-    aside ul li a:hover {
-      color: #ffffff;
-
-      /* Ensure the text color remains white on hover */
-    }
-  </style>
+  <script src="./Api/dashbord/index.js"></script>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
@@ -697,10 +650,7 @@
       </main>
     </div>
   </div>
-
-
   <script src="./assets/js/script.js"></script>
- 
 </body>
 
 </html>
