@@ -525,10 +525,8 @@
                                         <tr
                                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                             <th class="px-4 py-3">Question</th>
-                                            <th class="px-4 py-3">Question Type</th>
-                                            <th class="px-4 py-3">Exam Type</th>
                                             <th class="px-4 py-3">Option</th>
-                                            <th class="px-4 py-3">Correct Answer</th>
+                                            
                                             <th class="px-4 py-3">Action</th>
                                         </tr>
                                     </thead>
@@ -536,12 +534,6 @@
                                         <tr class="text-gray-700 dark:text-gray-400">
                                             <td class="px-4 py-3">
                                                 <p class="font-semibold">What does a red traffic light mean?</p>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">MultipleChoice</p>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">DrivingTest</p>
                                             </td>
                                             <td class="px-4 py-3">
                                                 <div>
@@ -562,9 +554,6 @@
                                                         D Yield
                                                     </label>
                                                 </div>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">Stop</p>
                                             </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
@@ -591,12 +580,7 @@
                                                 <p class="font-semibold">What should you do when you see a yellow
                                                     traffic light?</p>
                                             </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">MultipleChoice</p>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">DrivingTest</p>
-                                            </td>
+                                            
                                             <td class="px-4 py-3">
                                                 <div>
                                                     <label>
@@ -616,9 +600,6 @@
                                                         D Stop Immediately
                                                     </label>
                                                 </div>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">Slow Down</p>
                                             </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
@@ -644,12 +625,7 @@
                                             <td class="px-4 py-3">
                                                 <p class="font-semibold">What does a green traffic light mean?</p>
                                             </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">MultipleChoice</p>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">DrivingTest</p>
-                                            </td>
+                                           
                                             <td class="px-4 py-3">
                                                 <div>
                                                     <label>
@@ -669,9 +645,6 @@
                                                         D Yield
                                                     </label>
                                                 </div>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">Go</p>
                                             </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
@@ -699,12 +672,6 @@
                                                     steering wheel?</p>
                                             </td>
                                             <td class="px-4 py-3">
-                                                <p class="font-semibold">MultipleChoice</p>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">DrivingTest</p>
-                                            </td>
-                                            <td class="px-4 py-3">
                                                 <div>
                                                     <label>
                                                         <input type="radio" name="traffic-light" value="A">
@@ -723,9 +690,6 @@
                                                         D Randomly
                                                     </label>
                                                 </div>
-                                            </td>
-                                            <td class="px-4 py-3">
-                                                <p class="font-semibold">Toward the curb</p>
                                             </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex space-x-2">
@@ -786,49 +750,34 @@
                                     <div id="questionTypeError" class="text-red-600 text-sm mt-1 hidden">Please select a
                                         question type.</div>
                                 </div>
-                                <!-- Exam Type Dropdown -->
-                                <div class="mb-4">
-                                    <label class="block text-gray-700" for="examType">Exam Type</label>
-                                    <select id="examType" class="border border-gray-300 rounded w-full p-2" required>
-                                        <option value="">Select Exam Type</option>
-                                        <option value="theory">Theory</option>
-                                        <option value="practical">Practical</option>
-                                    </select>
-                                    <div id="examTypeError" class="text-red-600 text-sm mt-1 hidden">Please select an
-                                        exam type.</div>
-                                </div>
                                 <!-- Answer Options with Images -->
                                 <div class="mb-4">
                                     <label class="block text-gray-700">Answer Options</label>
                                     <div class="flex flex-col mb-4">
                                         <div class="flex items-center mb-2">
-                                            <input type="text" id="optionA" placeholder="Option A"
-                                                class="border border-gray-300 rounded w-full p-2" required>
-                                            <input type="file" id="optionAImage" accept="image/*"
-                                                class="ml-2 border border-gray-300 rounded">
+                                            <input type="radio" name="answer" id="optionA_radio" value="A" class="mr-2">
+                                            <input type="text" id="optionA" placeholder="Option A" class="border border-gray-300 rounded w-full p-2" required>
+                                            <input type="file" id="optionAImage" accept="image/*" class="ml-2 border border-gray-300 rounded">
                                         </div>
                                         <div class="flex items-center mb-2">
-                                            <input type="text" id="optionB" placeholder="Option B"
-                                                class="border border-gray-300 rounded w-full p-2" required>
-                                            <input type="file" id="optionBImage" accept="image/*"
-                                                class="ml-2 border border-gray-300 rounded">
+                                            <input type="radio" name="answer" id="optionB_radio" value="B" class="mr-2">
+                                            <input type="text" id="optionB" placeholder="Option B" class="border border-gray-300 rounded w-full p-2" required>
+                                            <input type="file" id="optionBImage" accept="image/*" class="ml-2 border border-gray-300 rounded">
                                         </div>
                                         <div class="flex items-center mb-2">
-                                            <input type="text" id="optionC" placeholder="Option C"
-                                                class="border border-gray-300 rounded w-full p-2">
-                                            <input type="file" id="optionCImage" accept="image/*"
-                                                class="ml-2 border border-gray-300 rounded">
+                                            <input type="radio" name="answer" id="optionC_radio" value="C" class="mr-2">
+                                            <input type="text" id="optionC" placeholder="Option C" class="border border-gray-300 rounded w-full p-2">
+                                            <input type="file" id="optionCImage" accept="image/*" class="ml-2 border border-gray-300 rounded">
                                         </div>
                                         <div class="flex items-center mb-2">
-                                            <input type="text" id="optionD" placeholder="Option D"
-                                                class="border border-gray-300 rounded w-full p-2">
-                                            <input type="file" id="optionDImage" accept="image/*"
-                                                class="ml-2 border border-gray-300 rounded">
+                                            <input type="radio" name="answer" id="optionD_radio" value="D" class="mr-2">
+                                            <input type="text" id="optionD" placeholder="Option D" class="border border-gray-300 rounded w-full p-2">
+                                            <input type="file" id="optionDImage" accept="image/*" class="ml-2 border border-gray-300 rounded">
                                         </div>
                                     </div>
-                                </div>
+                                </div>  
                                 <!-- Correct Answer -->
-                                <div class="mb-4">
+                                <!-- <div class="mb-4">
                                     <label class="block text-gray-700" for="correctAnswer">Correct Answer</label>
                                     <select id="correctAnswer" class="border border-gray-300 rounded w-full p-2"
                                         required>
@@ -840,7 +789,7 @@
                                     </select>
                                     <div id="correctAnswerError" class="text-red-600 text-sm mt-1 hidden">Please select
                                         a correct answer.</div>
-                                </div>
+                                </div> -->
                                 <!-- Buttons -->
                                 <div class="flex justify-end mt-6">
                                     <button type="submit"
